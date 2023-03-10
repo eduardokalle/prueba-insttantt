@@ -1,0 +1,14 @@
+
+<mat-toolbar color="primary">
+   <span class="fill-remaining-space">Dashboard hobbies User</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
+   <mat-form-field class="example-full-width">
+      <mat-label>Hobbies</mat-label>
+      <textarea  matInput type="textarea" formControlName="Hobbies" placeholder="insert Hobbies" maxlength="100"></textarea>
+   </mat-form-field>
+   <div class="form-element">
+      <button mat-raised-button color="primary" type="submit"  class="button"  disabled="!form.valid">Submit</button>
+   </div>
+ </form>

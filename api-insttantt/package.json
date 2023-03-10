@@ -1,0 +1,28 @@
+{
+  "name": "api-insttantt",
+  "version": "1.0.0",
+  "description": "api prueba insttantt",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js --exec babel-node --ignore src/public"
+  },
+  "keywords": [],
+  "author": "edocalle",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.17.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.21"
+  }
+}

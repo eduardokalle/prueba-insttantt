@@ -1,0 +1,27 @@
+.page {
+   margin: 0px;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   background: var(--first-color);
+ }
+
+
+ .content { 
+   width: 100%;
+   background:var(--first-color);
+ }
+
+.footer{
+   flex: none;
+   width: 100%;
+   margin: auto auto 0 auto;
+   background:var(--second-color);
+}
+
+.header{
+  flex: none;
+  width: 100%;
+  margin: auto auto 0 auto;
+  background:var(--tree-color);
+}

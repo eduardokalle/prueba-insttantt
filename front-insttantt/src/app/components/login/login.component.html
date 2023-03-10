@@ -1,0 +1,18 @@
+<mat-card>
+   <mat-card-title style="text-align-last: center;">Login</mat-card-title>
+<mat-card-content>
+
+ <mat-form-field>
+   <input matInput type="mail" #email required=true placeholder="Username">
+ </mat-form-field>
+  <br/>  
+  <br/>  
+ <mat-form-field>         
+   <input matInput type="password" #password required=true  placeholder="Password">
+ </mat-form-field> 
+
+ <div class="button">
+   <button  mat-button  (click)="onSignin(email.value , password.value)">Sign in</button>
+ </div>
+</mat-card-content>
+</mat-card>

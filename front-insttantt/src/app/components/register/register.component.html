@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+   <span class="fill-remaining-space">Register  User</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
+   <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="insert email">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>PhoneNumber</mat-label>
+      <input matInput type="phone" formControlName="phoneNumber" placeholder="insert phoneNumber">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>firstname</mat-label>
+      <input matInput type="text" formControlName="firstname" placeholder="insert firstname">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Lastname</mat-label>
+      <input matInput type="text" formControlName="lastname" placeholder="insert lastname">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Document Type</mat-label>
+      <input matInput type="text" formControlName="documentType" placeholder="insert documentType">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Document Number</mat-label>
+      <input matInput type="number" formControlName="documentNumber" placeholder="insert documentNumber">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Birthdate</mat-label>
+      <input matInput type="text" formControlName="birthdate" placeholder="insert birthdate">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+       <mat-label>Expedition Date</mat-label>
+      <input matInput type="text" formControlName="expeditionDate" placeholder="insert expeditionDate">
+   </mat-form-field>
+   <div class="form-element">
+      <button mat-raised-button color="primary" type="submit"  class="button"  [disabled]="!form.valid">Submit</button>
+   </div>
+ </form>

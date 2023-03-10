@@ -1,0 +1,39 @@
+
+:host {
+   display: flex;
+   justify-content: center;
+   margin: 20% 0px;
+}
+
+.mat-form-field {
+ width: 100%;
+ min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+ 
+ justify-content: center;
+}
+
+.button {
+ display: flex;
+ justify-content: flex-end;
+}
+.logo{
+ object-fit: contain;
+ height: 60px;
+ 
+}
+
+.error {
+ color: red;
+}
+
+.footer{
+   margin: none !important;
+}
+
+.header{ 
+  margin: none !important;
+}

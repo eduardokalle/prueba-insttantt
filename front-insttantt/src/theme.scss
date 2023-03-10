@@ -1,0 +1,29 @@
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+//@use '@angular/material' as mat;
+
+
+//$my-palette: mat.$indigo-palette;
+
+/* Color 1: #B51700
+Color 2: #171447
+Color 3: #434343
+Color 4: #B8B6B6
+Color 5: #FFFFFF */
+
+// $indigo-palette: (
+//  50: #B51700,
+//  100: #171447,
+//  200: #434343,
+//  300: #B8B6B6,
+//  400: #FFFFFF,
+// );
+
+
+// $my-primary: mat.define-palette($indigo-palette, 50);
+// $my-accent: mat.define-palette($indigo-palette, 200);
+
+// $my-theme: mat-light-theme($my-primary, $my-accent);
+
+// @include angular-material-theme($my-theme);

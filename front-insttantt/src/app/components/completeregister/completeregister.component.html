@@ -1,0 +1,26 @@
+
+<mat-toolbar color="primary">
+   <span class="fill-remaining-space">Complete Register  User</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
+   <mat-form-field class="example-full-width">
+      <mat-label>Country</mat-label>
+      <input matInput type="text" formControlName="country" placeholder="insert country">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>City</mat-label>
+      <input matInput type="text" formControlName="city" placeholder="insert city">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" formControlName="address" placeholder="insert address">
+   </mat-form-field>
+   <mat-form-field class="example-full-width">
+      <mat-label>Photo Profile</mat-label>
+      <input matInput type="text" formControlName="photoProfile" placeholder="insert photo Profile">
+   </mat-form-field>
+   <div class="form-element">
+      <button mat-raised-button color="primary" type="submit"  class="button"  disabled="!form.valid">Submit</button>
+   </div>
+ </form>
