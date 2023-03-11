@@ -2,8 +2,44 @@
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+  margin: auto;
+  padding-left: 25%;
 }
 
 .example-full-width {
   width: 60%;
+}
+
+button{
+  color: var(--fourt-color);
+}
+.page {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--first-color);
+}
+
+.content { 
+  width: 100%;
+  background:var(--first-color);
+}
+
+.footer{
+  flex: none;
+  width: 100%;
+  margin: auto auto 0 auto;
+  background:var(--second-color);
+}
+
+.header{
+ flex: none;
+ width: 100%;
+ margin-block-end: auto;
+ background:var(--tree-color);
+}
+
+.title{
+  color: var(--first-color);
 }

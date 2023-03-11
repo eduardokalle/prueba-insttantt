@@ -1,0 +1,20 @@
+
+<mat-toolbar  class="header">
+   <span class="title">Hobbie User</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
+   <mat-form-field class="example-full-width">
+      <mat-label>Hobbies</mat-label>
+      <textarea  matInput type="textarea" formControlName="Hobbies" placeholder="insert Hobbies" maxlength="100"></textarea>
+   </mat-form-field>
+   <div class="form-element">
+      <button mat-raised-button  type="submit"  class="button"  [disabled]="!form.valid">agregar hobbie</button>
+   </div>
+ </form>
+
+ <h4 class="list">listado de tus hobbies</h4>
+
+ <mat-list role="listitem" *ngFor="let list of datalis" role="list">
+      <mat-list-item role="listitem">{{list.hobbie}}</mat-list-item>
+ </mat-list>   

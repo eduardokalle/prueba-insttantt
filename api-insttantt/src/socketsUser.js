@@ -76,15 +76,35 @@
      });
 
      socket.on("client:gethobbies", async (data) => {
-      const idUser = data.id;
-      const existingHobbies = await Hobbies.findOne({idUser: idUser});
+      const idUser = data;
+      const existingHobbies = await Hobbies.find({idUser: idUser});
       console.log(existingHobbies);
       socket.emit("server:selectedhobbies", existingHobbies);
     });
- 
+
+    socket.on("client:login", async (data) => {
+      const user = data.user
+      const existingUser = await User.findOne({email: user});
+      console.log(existingUser);
+      
+      if (existingUser == null) {
+        io.emit("server:login", "el usuario no existe registrese porfavor");
+        
+      }else{
+        if (existingUser.phoneNumber == data.password) {
+          io.emit("server:login", "credenciales correctas");
+          io.emit("server:loginID", existingUser._id);
+        }else {
+          io.emit("server:login", "credenciales incorrectas");
+         }
+      }
+     });   
+
      socket.on("disconnect", () => {
        console.log(socket.id, "disconnected");
      });
+
+
    });
  };
  

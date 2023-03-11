@@ -40,6 +40,15 @@ button{
  background:var(--tree-color);
 }
 
+.header{
+  margin-right: auto !important;
+}
+
 .title{
   color: var(--first-color);
 }
+
+.list{
+  font: 500 20px/32px Roboto, sans-serif;
+  letter-spacing: .0125em;
+ }

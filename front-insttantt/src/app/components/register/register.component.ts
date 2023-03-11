@@ -1,8 +1,7 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service'; 
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +10,7 @@ import Swal from 'sweetalert2'
 export class RegisterComponent implements OnInit {
   message: string = '';
   form: FormGroup;
+  @Output() item = 'Login';
 
   constructor(
     private userService: UserService,
@@ -18,9 +18,9 @@ export class RegisterComponent implements OnInit {
     ) { 
       this.form = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', Validators.required],
-        firstname: ['', Validators.required],
-        lastname: ['', Validators.required],
+        phoneNumber: ['',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/),Validators.minLength(10)]],
+        firstname: ['', [Validators.required, Validators.maxLength(2), Validators.minLength(100)]],
+        lastname: ['', [Validators.required, Validators.maxLength(2), Validators.minLength(100)]],
         documentType: ['', Validators.required],
         documentNumber: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
         birthdate: ['', Validators.required],
@@ -42,9 +42,12 @@ export class RegisterComponent implements OnInit {
    async resData () {
     // Escucha el evento 'message' del servidor
    await this.userService.on('server:newuser', (data: any) => {
-   
+
      if (data != "usuario en db") {
       localStorage.setItem("myID", data);
+      localStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("isLoggedIn", "true");
+      document.cookie = `isLoggedIn=true;  path=/ max-age=10*10`;
       Swal.fire({
         icon: 'success',
         title: 'Usuario registrado con id  ' +  data,

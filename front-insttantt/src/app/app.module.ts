@@ -21,6 +21,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -30,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompleteregisterComponent } from './components/completeregister/completeregister.component';
+import { HobbieComponent } from './components/hobbie/hobbie.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { CompleteregisterComponent } from './components/completeregister/complet
     HomeComponent,
     ProfileComponent,
     DashboardComponent,
-    CompleteregisterComponent
+    CompleteregisterComponent,
+    HobbieComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +60,10 @@ import { CompleteregisterComponent } from './components/completeregister/complet
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

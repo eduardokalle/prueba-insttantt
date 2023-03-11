@@ -1,18 +1,32 @@
-<mat-card>
-   <mat-card-title style="text-align-last: center;">Login</mat-card-title>
-<mat-card-content>
+<div class="page">
+  <mat-toolbar class="header">
+     <span class="title">Hubbec login</span>
+  </mat-toolbar>      
+      <mat-card class="card">
+        <mat-card-title style="text-align-last: center;">Login</mat-card-title>
+      <mat-card-content>
 
- <mat-form-field>
-   <input matInput type="mail" #email required=true placeholder="Username">
- </mat-form-field>
-  <br/>  
-  <br/>  
- <mat-form-field>         
-   <input matInput type="password" #password required=true  placeholder="Password">
- </mat-form-field> 
-
- <div class="button">
-   <button  mat-button  (click)="onSignin(email.value , password.value)">Sign in</button>
- </div>
-</mat-card-content>
-</mat-card>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">  
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput type="email" formControlName="user" placeholder="insert usuario">
+        </mat-form-field>
+            <br/>  
+            <br/> 
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="insert password">
+        </mat-form-field>      
+        <div class="form-element">
+          <button mat-raised-button  type="submit"  class="button"  [disabled]="!form.valid">iniciar sesión</button>    
+      </div>
+      </form> 
+        <br/>  
+      <div class="form-element">
+        <button mat-raised-button  class="button" (click)="routRegister()">Register</button>
+      </div>
+      </mat-card-content>
+      </mat-card>
+  <mat-toolbar class="footer">
+  </mat-toolbar>
+</div>      
