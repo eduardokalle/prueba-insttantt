@@ -33,7 +33,10 @@ export class ProfileComponent implements OnInit {
   photoUrl: any;
   photo : any;
 
-  datagetUser 
+
+  addressSet : {};
+  countrySet : any;
+  citySet : any;
 
   constructor(
     private userService: UserService,
@@ -55,14 +58,20 @@ export class ProfileComponent implements OnInit {
     this.datCountrys= this.mockCountryCityService.getDataCountri();
     const muId = localStorage.getItem("myID");
     this.userService.emit('client:getuser', muId);
-    this.userService.on('server:getuser', (data: any) => {  
-        data == this.datagetUser;
-        console.log(this.datagetUser);
-        var datass = data
-        console.log(datass);
-        
-    })
+    this.dataGet();
+
   }
+
+  
+  async dataGet(){
+    await this.userService.on('server:getuser', ( data: any) => {  
+      
+        console.log(data);
+        data.address == this.addressSet
+        console.log(this.addressSet);
+      
+    })
+    }
 
   capturePhoto() {
    

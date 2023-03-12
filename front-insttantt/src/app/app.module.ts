@@ -1,14 +1,15 @@
+
+// modules angular  
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-
 import { HttpClientModule } from "@angular/common/http"
 import { AuthGuard } from "./auth-guard.guard"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
+// modules material 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from "@angular/material/icon";
@@ -24,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+// modules components
+import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -65,7 +68,7 @@ import { FilterByCountryPipe  } from './components/completeregister/completeregi
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

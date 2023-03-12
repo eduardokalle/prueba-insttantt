@@ -102,7 +102,6 @@ export class RegisterComponent implements OnInit {
         text: 'Algo salio mal!',
       })
      }
-      console.log("server:newuser == ", data);
     });
   }  
   

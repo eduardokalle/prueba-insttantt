@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service'; 
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { addMinutes } from 'date-fns';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router,
+    private cookieService: CookieService
     ) { 
       this.form = this.fb.group({
         user: ['', [Validators.required, Validators.email]],
@@ -28,10 +31,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.userService.connect();
-    if(localStorage.getItem('user')!== null){ 
+    if(localStorage.getItem('isLoggedIn')!== null){ 
     this.isSignedIn= true
     } else
-    this.isSignedIn = false
+    this.isSignedIn = false      
   }
 
   routRegister() {
@@ -45,6 +48,12 @@ export class LoginComponent implements OnInit {
     this.resData();
   };
 
+  setCookie() {
+    const myDate: Date = addMinutes(new Date(), 10);
+    console.log('set date ==' ,myDate);
+    this.cookieService.set('miCookieisLoggedIn', 'miCookieisLoggedIn', myDate);
+  }
+
   async resData () {
    await this.userService.on('server:login', (data: any) => {
    
@@ -54,7 +63,8 @@ export class LoginComponent implements OnInit {
       });
       localStorage.setItem("isLoggedIn", "true");
       sessionStorage.setItem("isLoggedIn", "true");
-      document.cookie = "isLoggedIn=true;  path=/ max-age=10*10";
+      //document.cookie = "isLoggedIn=true;  path=/ max-age=10*10";
+      this.setCookie();
       Swal.fire({
         icon: 'success',
         title: 'Credenciales correctas usuario registrado con id',

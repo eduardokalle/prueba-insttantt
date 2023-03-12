@@ -11,7 +11,9 @@ import Swal from 'sweetalert2'
 export class HobbieComponent implements OnInit {
 
   datalis = [];
+  datalisSlice = [];
   form: FormGroup;
+  muId: any; 
 
   constructor(
     private userService: UserService,
@@ -25,16 +27,17 @@ export class HobbieComponent implements OnInit {
   ngOnInit(): void {
     this.userService.connect();
     this.getDataHobbies();
+    this.muId = localStorage.getItem("myID");
   }
 
   onSubmit() {
     console.log(this.form.value);
       const data = this.form.value;
-      const muId = localStorage.getItem("myID");
+      this.muId = localStorage.getItem("myID");
 
       const newData = {
         hobbie: data.Hobbies,
-        idUser: muId
+        idUser: this.muId
       }
 
       console.log(data);
@@ -46,15 +49,15 @@ export class HobbieComponent implements OnInit {
 
     async getDataHobbies() {
 
-      const muId = localStorage.getItem("myID");
-
-      await this.userService.emit('client:gethobbies',muId);
+      this.muId = localStorage.getItem("myID");
+      await this.userService.emit('client:gethobbies',this.muId
+      );
       await this.userService.on('server:selectedhobbies', (data: any) => {
 
           this.datalis  = data
+          this.datalis = this.datalis.slice(-5);
           console.log("server:selectedhobbies == ",this.datalis); 
       });
-
 
     }
 
@@ -69,6 +72,7 @@ export class HobbieComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.getDataHobbies()
        }else{
         Swal.fire({
           icon: 'error',
@@ -76,7 +80,6 @@ export class HobbieComponent implements OnInit {
           text: 'Algo salio mal!',
         })
        }
-        console.log("server:newhobbies == ", data);
       });
     }  
 }
