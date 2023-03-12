@@ -30,6 +30,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompleteregisterComponent } from './components/completeregister/completeregister.component';
 import { HobbieComponent } from './components/hobbie/hobbie.component';
+import { FilterByCountryPipe  } from './components/completeregister/completeregister.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import { HobbieComponent } from './components/hobbie/hobbie.component';
     ProfileComponent,
     DashboardComponent,
     CompleteregisterComponent,
-    HobbieComponent
+    HobbieComponent,
+    FilterByCountryPipe
   ],
   imports: [
     BrowserModule,

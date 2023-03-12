@@ -18,6 +18,10 @@ export class UserService {
     this.socket.emit(eventName, data);
   }
 
+  emitUpdate(eventName: string, id: any, data: any) {
+    this.socket.emit(eventName, id ,data);
+  }
+
   on(eventName: string, callback: any) {
     this.socket.on(eventName, callback);
   }

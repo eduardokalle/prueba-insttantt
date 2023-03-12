@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service'; 
 import Swal from 'sweetalert2';
 import { isBefore , differenceInYears } from 'date-fns';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
     ) { 
       this.form = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
@@ -86,6 +88,7 @@ export class RegisterComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      this.router.navigate(["dashboard/completeregister"]);
      }else if (data == "usuario en db") {
       Swal.fire({
         icon: 'error',

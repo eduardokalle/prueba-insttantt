@@ -65,6 +65,9 @@
              {{document.name}}
            </mat-option>
          </mat-select>
+         <mat-error *ngIf="form.controls['documentType'].hasError('required')">
+            El campo es requerido  
+         </mat-error>
        </mat-form-field>
       <mat-form-field class="example-full-width">
          <mat-label>Número de identificación</mat-label>

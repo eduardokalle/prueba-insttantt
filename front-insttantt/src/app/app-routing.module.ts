@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HobbieComponent } from './components/hobbie/hobbie.component';
+import { CompleteregisterComponent } from "./components/completeregister/completeregister.component";
 
 const routes: Routes = [
   {
@@ -35,11 +36,11 @@ const routes: Routes = [
             path: "hobbie",
             canActivate: [AuthGuard],
             component: HobbieComponent
-          },
+          }, 
           {
-            path: "home",
+            path: "completeregister",
             canActivate: [AuthGuard],
-            component: HomeComponent
+            component: CompleteregisterComponent
           }, 
       ]
   }

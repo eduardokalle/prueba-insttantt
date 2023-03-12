@@ -36,7 +36,7 @@
  .header{
   flex: none;
   width: 100%;
-  margin-block-end: auto;
+  
   background:var(--tree-color);
  }
  

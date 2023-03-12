@@ -1,26 +1,51 @@
 
-<mat-toolbar color="primary">
-   <span class="fill-remaining-space">Complete Register  User</span>
+<mat-toolbar class="header1">
+   <span class="title">Completar registro de Usuario</span>
 </mat-toolbar>
 <br>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
    <mat-form-field class="example-full-width">
-      <mat-label>Country</mat-label>
-      <input matInput type="text" formControlName="country" placeholder="insert country">
+      <mat-label>País de residencia</mat-label>
+         <mat-select formControlName="country" [(value)]="selectedCountry">
+           <mat-option *ngFor="let country of datCountrys" [value]="country.name">
+             {{country.name}}
+           </mat-option>
+         </mat-select>
+         <mat-error *ngIf="form.controls['country'].hasError('required')">
+            El campo es requerido  
+         </mat-error>   
    </mat-form-field>
    <mat-form-field class="example-full-width">
-      <mat-label>City</mat-label>
-      <input matInput type="text" formControlName="city" placeholder="insert city">
+      <mat-label>Ciudad de residencia</mat-label>
+         <mat-select formControlName="city" [(ngModel)]="selectedCity">
+           <mat-option *ngFor="let city of dataCities | filterByCountry:selectedCountry?.id" [value]="city.name"> 
+             {{city.name}}
+           </mat-option>
+         </mat-select>
+         <mat-error *ngIf="form.controls['country'].hasError('required')">
+            El campo es requerido  
+         </mat-error>
    </mat-form-field>
    <mat-form-field class="example-full-width">
-      <mat-label>Address</mat-label>
+      <mat-label>Dirección de residencia</mat-label>
       <input matInput type="text" formControlName="address" placeholder="insert address">
    </mat-form-field>
-   <mat-form-field class="example-full-width">
-      <mat-label>Photo Profile</mat-label>
+   <!-- <mat-form-field class="example-full-width">
+      <mat-label>Foto de perfil</mat-label>
       <input matInput type="text" formControlName="photoProfile" placeholder="insert photo Profile">
-   </mat-form-field>
+   </mat-form-field> -->
+   <p class="list">Camara</p>
+   <video  class="camera" #videoElement></video>
+   <div id="photo" #photo></div>
+   <br>
+   <p class="list">Foto</p>
+   <canvas id="canvas"  class="camera"></canvas>
+   <br>
+   <br>
+   <span  class="Bcamera" (click)="capturePhoto()">{{labelcamare}}</span>
+   <br>
+   <br>
    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit"  class="button"  disabled="!form.valid">Submit</button>
+      <button mat-raised-button color="primary" type="submit"  class="button"  [disabled]="!form.valid">Guardar</button>
    </div>
  </form>

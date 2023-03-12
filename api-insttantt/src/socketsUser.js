@@ -37,35 +37,36 @@
  
      socket.on("client:getuser", async (userId) => {
        const user = await User.findById(userId);
-       socket.emit("server:selecteduser", user);
+       socket.emit("server:getuser", user);
      });
  
-     socket.on("client:updateuser", async (updatedUser) => {
-       await User.findByIdAndUpdate(updatedUser._id, {
-        email: updatedUser.email,
-        phoneNumber: updatedUser.phoneNumber,
-        firstname: updatedUser.firstname,
-        lastname: updatedUser.lastname,
-        documentType: updatedUser.documentType,
-        documentNumber: updatedUser.documentNumber,
-        birthdate: updatedUser.birthdate,
-        expeditionDate: updatedUser.expeditionDate,
-        country: updatedUser.country,
-        city: updatedUser.city,
-        address: updatedUser.address,
-        photoProfile: updatedUser.photoProfile,
-       });
-       emitUsers();
-     });
+    //  socket.on("client:updateuser", async (updatedUser) => {
+    //    await User.findByIdAndUpdate(updatedUser._id, {
+    //     email: updatedUser.email,
+    //     phoneNumber: updatedUser.phoneNumber,
+    //     firstname: updatedUser.firstname,
+    //     lastname: updatedUser.lastname,
+    //     documentType: updatedUser.documentType,
+    //     documentNumber: updatedUser.documentNumber,
+    //     birthdate: updatedUser.birthdate,
+    //     expeditionDate: updatedUser.expeditionDate,
+    //     country: updatedUser.country,
+    //     city: updatedUser.city,
+    //     address: updatedUser.address,
+    //     photoProfile: updatedUser.photoProfile,
+    //    });
+    //    io.emit("server:updateuser", "resgitro completado");
+    //  });
 
      socket.on("client:updateusercomplete", async (updatedUserComplete) => {
       await User.findByIdAndUpdate(updatedUserComplete._id, {
-        country: updatedUser.country,
-        city: updatedUser.city,
-        address: updatedUser.address,
-        photoProfile: updatedUser.photoProfile,
+        country: updatedUserComplete.country,
+        city: updatedUserComplete.city,
+        address: updatedUserComplete.address,
+        photoProfile: updatedUserComplete.photoProfile,
       });
-      emitUsers();
+      console.log(updatedUserComplete);
+      io.emit("server:updateusercomplete", "resgitro completado");
     });
 
     socket.on("client:newhobbies", async (data) => {

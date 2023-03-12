@@ -33,13 +33,44 @@ button{
   background:var(--second-color);
 }
 
-.header{
+.header1{
  flex: none;
  width: 100%;
  margin-block-end: auto;
  background:var(--tree-color);
 }
 
+
 .title{
   color: var(--first-color);
 }
+
+.camera{
+  border-style: solid;
+  border-color: grey;
+  width:200px; 
+  height:200p;
+}
+
+.Bcamera{  
+  margin-bottom: 10%;
+  padding: 10px;
+  display: inline;
+  border-radius: 2px;
+  font-family: "Arial";
+  border: 0;
+  margin: 0 10px;
+  background: var(--second-color);
+  font-size: 15px;
+  line-height: 15px;
+  color: white;
+  width: auto;
+  height: auto;
+  box-sizing: content-box;
+}
+
+.list{
+  font: 500 20px/32px Roboto, sans-serif;
+  font-size:small;
+
+ }
