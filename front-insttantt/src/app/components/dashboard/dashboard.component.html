@@ -7,7 +7,7 @@
          <button mat-raised-button  routerLink="hobbie">Hobbie</button>
          <button mat-raised-button  routerLink="profile">Profile</button>
       </div>
-      <button mat-raised-button  routerLink="hobbie">Logout</button>
+      <button mat-raised-button  (click)="logout()">Logout</button>
    </mat-toolbar>
    <router-outlet class="content"></router-outlet>
    <mat-toolbar color="primary" class="footer">

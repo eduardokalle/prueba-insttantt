@@ -6,35 +6,95 @@
       <mat-form-field class="example-full-width">
          <mat-label>Email</mat-label>
          <input matInput type="email" formControlName="email" placeholder="insert email">
+         <mat-error *ngIf="form.controls['email'].hasError('required')">
+           El campo es requerido 
+          </mat-error>
+          <mat-error *ngIf="form.controls['email'].hasError('email')">
+            Por favor ingrese un email valido 
+          </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>PhoneNumber</mat-label>
+         <mat-label>Número de celular</mat-label>
          <input matInput type="phone" formControlName="phoneNumber" placeholder="insert phoneNumber">
+         <mat-error *ngIf="form.controls['phoneNumber'].hasError('required')">
+            El campo es requerido 
+         </mat-error>
+         <mat-error *ngIf="form.controls['phoneNumber'].hasError('minLength')">
+            EL Número de celular debe ser mayor de 10 digitos
+         </mat-error>
+         <mat-error *ngIf="form.controls['phoneNumber'].hasError('pattern')">
+            EL Número de celular solo deben ingresarse numeros
+         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>firstname</mat-label>
+         <mat-label>Nombre</mat-label>
          <input matInput type="text" formControlName="firstname" placeholder="insert firstname">
+         <mat-error *ngIf="form.controls['firstname'].hasError('required')">
+            El campo es requerido  
+         </mat-error>
+         <mat-error *ngIf="form.controls['firstname'].hasError('maxLength')">
+            El nombre no puede ser mayor de 100 digitos  
+         </mat-error>
+         <mat-error *ngIf="form.controls['firstname'].hasError('maxLength')">
+            El nombre no puede ser menor de 2 digitos  
+         </mat-error>
+         <mat-error *ngIf="form.controls['firstname'].hasError('pattern')">
+            El nombre solo pueden ingresarse letras  
+         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>Lastname</mat-label>
+         <mat-label>Apellido</mat-label>
          <input matInput type="text" formControlName="lastname" placeholder="insert lastname">
+         <mat-error *ngIf="form.controls['lastname'].hasError('required')">
+            El campo es requerido  
+         </mat-error>
+         <mat-error *ngIf="form.controls['lastname'].hasError('maxLength')">
+            El apellido no puede ser mayor de 100 digitos  
+         </mat-error>
+         <mat-error *ngIf="form.controls['lastname'].hasError('maxLength')">
+            El apellido no puede ser menor de 2 digitos  
+         </mat-error>
+         <mat-error *ngIf="form.controls['lastname'].hasError('pattern')">
+            El apellido solo pueden ingresarse letras  
+         </mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field>
          <mat-label>Document Type</mat-label>
-         <input matInput type="text" formControlName="documentType" placeholder="insert documentType">
-      </mat-form-field>
+         <mat-select formControlName="documentType" [(ngModel)]="selectedItem">
+           <mat-option *ngFor="let document of typeDocument" [value]="document.name">
+             {{document.name}}
+           </mat-option>
+         </mat-select>
+       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>Document Number</mat-label>
+         <mat-label>Número de identificación</mat-label>
          <input matInput type="number" formControlName="documentNumber" placeholder="insert documentNumber">
+         <mat-error *ngIf="form.controls['documentNumber'].hasError('required')">
+            El campo es requerido 
+         </mat-error>
+         <mat-error *ngIf="form.controls['documentNumber'].hasError('pattern')">
+            EL Número de identificacións  solo pueden ingresarse numeros 
+         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>Birthdate</mat-label>
-         <input matInput type="text" formControlName="birthdate" placeholder="insert birthdate">
+         <mat-label>Fecha de nacimiento</mat-label>
+         <input matInput [matDatepicker]="picker" formControlName="birthdate" placeholder="insert birthdate">
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker  #picker></mat-datepicker>
+         <mat-error *ngIf="form.controls['birthdate'].hasError('invalidAge')">
+            La fecha de nacimiento debe ser mayor de 18 años.
+         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-         <mat-label>Expedition Date</mat-label>
-         <input matInput type="text" formControlName="expeditionDate" placeholder="insert expeditionDate">
+         <mat-label>Fecha de expedición</mat-label>
+         <input matInput [matDatepicker]="picker1" formControlName="expeditionDate" placeholder="insert expeditionDate">
+         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+         <mat-datepicker #picker1></mat-datepicker>
+         <mat-error *ngIf="form.controls['expeditionDate'].hasError('invalidDate')">
+            La fecha e expedición debe ser menor a la fecha actual
+         </mat-error>
       </mat-form-field>
+      <br>
       <div class="form-element">
          <button mat-raised-button  type="submit"  class="button"  [disabled]="!form.valid">Submit</button>
       </div>

@@ -49,7 +49,7 @@
    </mat-form-field>
    <mat-form-field class="example-full-width">
       <mat-label>Photo Profile</mat-label>
-      <input matInput type="text" formControlName="photoProfile" placeholder="insert photo Profile">
+      <input matInput type="text" accept="image/*" capture="environment" formControlName="photoProfile" placeholder="insert photo Profile">
    </mat-form-field>
    <div class="form-element">
       <button mat-raised-button  type="submit"  class="button"  disabled="!form.valid">Submit</button>

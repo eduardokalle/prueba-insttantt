@@ -9,8 +9,6 @@ import { HttpClientModule } from "@angular/common/http"
 import { AuthGuard } from "./auth-guard.guard"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from "@angular/material/icon";
@@ -19,12 +17,12 @@ import { MatDialogModule } from "@angular/material/dialog"
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-
-
-
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,8 +30,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompleteregisterComponent } from './components/completeregister/completeregister.component';
 import { HobbieComponent } from './components/hobbie/hobbie.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +57,10 @@ import { HobbieComponent } from './components/hobbie/hobbie.component';
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -10,12 +10,21 @@
         <mat-form-field class="example-full-width">
           <mat-label>Usuario</mat-label>
           <input matInput type="email" formControlName="user" placeholder="insert usuario">
+          <mat-error *ngIf="form.controls['user'].hasError('required')">
+            El campo es requerido 
+           </mat-error>
+           <mat-error *ngIf="form.controls['user'].hasError('email')">
+             Por favor ingrese un email valido 
+           </mat-error>
         </mat-form-field>
             <br/>  
             <br/> 
         <mat-form-field class="example-full-width">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password" placeholder="insert password">
+          <mat-error *ngIf="form.controls['password'].hasError('required')">
+            El campo es requerido 
+          </mat-error>
         </mat-form-field>      
         <div class="form-element">
           <button mat-raised-button  type="submit"  class="button"  [disabled]="!form.valid">iniciar sesión</button>    

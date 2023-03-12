@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       document.cookie = "isLoggedIn=true;  path=/ max-age=10*10";
       Swal.fire({
         icon: 'success',
-        title: 'Usuario registrado con id',
+        title: 'Credenciales correctas usuario registrado con id',
         showConfirmButton: false,
         timer: 1500
       })
