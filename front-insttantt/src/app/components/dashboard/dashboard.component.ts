@@ -36,13 +36,14 @@ export class DashboardComponent implements OnInit {
  async getdataUSER(){
   
   await this.userService.on('server:getuser', ( data: any) => {  
-      console.log(data);
-      //  if(data){
-      //    this.validaButoonProfile = false
-      //   this.router.navigate(["dashboard/completeregister"]);
-      //  }else {
-      //    this.validaButoonProfile = true
-      //  }
+      console.log(data );
+      var length = Object.keys(data).length;
+       if(length < 13){
+          this.validaButoonProfile = false
+         this.router.navigate(["dashboard/completeregister"]);
+      }else {
+          this.validaButoonProfile = true
+      }
      })
 
   }

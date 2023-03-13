@@ -68,18 +68,18 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("isLoggedIn", "true");
       //document.cookie = "isLoggedIn=true;  path=/ max-age=10*10";
       this.setCookie();
-      
+      this.spinner = true;
       setTimeout(() => {
-        this.spinner = true;
-      }, 4000);
-      this.spinner = false;
-      Swal.fire({
-        icon: 'success',
-        title: 'Credenciales correctas usuario registrado con id',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      this.router.navigate(["dashboard"]);
+        Swal.fire({
+          icon: 'success',
+          title: 'Credenciales correctas usuario registrado con id',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.spinner = false;
+        this.router.navigate(["dashboard"]);
+      }, 3000);
+      
      }else if (data == "credenciales incorrectas") {
       Swal.fire({
         icon: 'error',

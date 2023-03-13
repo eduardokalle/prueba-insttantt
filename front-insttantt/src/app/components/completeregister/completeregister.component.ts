@@ -92,7 +92,6 @@ export class CompleteregisterComponent implements OnInit {
     console.log(this.photo);
   }
 
-
   onSubmit() {
     console.log(this.form.value);
     const data = this.form.value;

@@ -35,6 +35,9 @@ Para el front se utilizo muchos asíncronos servicios para los socket, angular m
 
 nota(En este se encuentra una carpeta con el front y otra para el back)
 
+se trabajo con la version de node v14por si tiene  problemas al clonarla 
+
+
 - front
 acceder a las carpeta front-insttantt
 npm install  == para instalar node_modules y dependencias
