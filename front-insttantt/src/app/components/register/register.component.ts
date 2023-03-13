@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service'; 
 import Swal from 'sweetalert2';
 import { isBefore , differenceInYears } from 'date-fns';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { addMinutes } from 'date-fns';
 
 @Component({
   selector: 'app-register',
@@ -27,6 +29,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router,
+    private cookieService: CookieService
     ) { 
       this.form = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
@@ -73,6 +76,12 @@ export class RegisterComponent implements OnInit {
       this.resData();
     };
 
+  setCookie() {
+    const myDate: Date = addMinutes(new Date(), 10);
+    console.log('set date ==' ,myDate);
+    this.cookieService.set('miCookieisLoggedIn', 'miCookieisLoggedIn', myDate);
+  }  
+
    async resData () {
     // Escucha el evento 'message' del servidor
    await this.userService.on('server:newuser', (data: any) => {
@@ -81,7 +90,8 @@ export class RegisterComponent implements OnInit {
       localStorage.setItem("myID", data);
       localStorage.setItem("isLoggedIn", "true");
       sessionStorage.setItem("isLoggedIn", "true");
-      document.cookie = `isLoggedIn=true;  path=/ max-age=10*10`;
+      //document.cookie = `isLoggedIn=true;  path=/ max-age=10*10`;
+      this.setCookie();
       Swal.fire({
         icon: 'success',
         title: 'Usuario registrado con id  ' +  data,

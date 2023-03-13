@@ -1,4 +1,4 @@
-import { Component, OnInit,  ElementRef, ViewChild  } from '@angular/core';
+import { Component, OnInit,  ElementRef, ViewChild , Output , EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Pipe, PipeTransform } from '@angular/core';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./completeregister.component.css']
 })
 export class CompleteregisterComponent implements OnInit {
+  @Output() evenData = new EventEmitter<any> 
   message: string = '';
   form: FormGroup;
   selectedCountry: any;
@@ -33,6 +34,7 @@ export class CompleteregisterComponent implements OnInit {
   labelcamare: string = 'Activar camara';
   photoUrl: any;
   photo : any;
+
 
   constructor(
     private userService: UserService,
@@ -52,6 +54,7 @@ export class CompleteregisterComponent implements OnInit {
     this.userService.connect();
     this.dataCities = this.mockCountryCityService.getDataCities();
     this.datCountrys= this.mockCountryCityService.getDataCountri();
+    this.evenData.emit(false);
   }
 
   capturePhoto() {
@@ -97,7 +100,7 @@ export class CompleteregisterComponent implements OnInit {
     console.log(this.photo);
 
     const newData = {
-      country: data.country,
+      country: data.country.name,
       city: data.city,
       address: data.address,
       photoProfile: this.photo,

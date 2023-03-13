@@ -68,3 +68,10 @@ mat-card-content {
 .title{
    color: var(--first-color);
  }
+
+.mat-mdc-progress-spinner {
+   --mdc-circular-progress-active-indicator-color: var(--tree-color);
+   margin: auto;
+   justify-content: center;
+   margin-bottom: inherit;
+}

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
  
   form: FormGroup;
   isSignedIn = false;
+  spinner = false;
 
 
   constructor(
@@ -51,7 +52,9 @@ export class LoginComponent implements OnInit {
   setCookie() {
     const myDate: Date = addMinutes(new Date(), 10);
     console.log('set date ==' ,myDate);
+
     this.cookieService.set('miCookieisLoggedIn', 'miCookieisLoggedIn', myDate);
+    localStorage.setItem("miCookieExp", myDate.toString());
   }
 
   async resData () {
@@ -65,6 +68,11 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("isLoggedIn", "true");
       //document.cookie = "isLoggedIn=true;  path=/ max-age=10*10";
       this.setCookie();
+      
+      setTimeout(() => {
+        this.spinner = true;
+      }, 4000);
+      this.spinner = false;
       Swal.fire({
         icon: 'success',
         title: 'Credenciales correctas usuario registrado con id',

@@ -4,7 +4,8 @@
   "description": "api prueba insttantt",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js --exec babel-node --ignore src/public"
+    "dev": "nodemon src/index.js --exec babel-node --ignore src/public",
+    "start": "nodemon src/index.js --exec babel-node --ignore src/public"
   },
   "keywords": [],
   "author": "edocalle",

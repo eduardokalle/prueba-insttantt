@@ -23,6 +23,10 @@ export class AuthGuard implements CanActivate {
     
     if (ls !== 'true' || session !== 'true' || cookie !== 'miCookieisLoggedIn') {
       this.router.navigate(["login"])
+      localStorage.removeItem('isLoggedIn'); 
+      sessionStorage.removeItem("isLoggedIn");
+      //const cookie =  document.cookie = "username=isLoggedIn;  path=/ max-age=10*10";
+      this.cookieService.delete('miCookieisLoggedIn');
       return false
     }
     return true

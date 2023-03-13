@@ -2,12 +2,12 @@
 <mat-toolbar class="header1">
    <span class="title">Perfil de Usuario</span>
 </mat-toolbar>
-<br>
+   <br>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
    <mat-form-field class="example-full-width">
       <mat-label>País de residencia</mat-label>
          <mat-select formControlName="country" [(value)]="selectedCountry">
-           <mat-option *ngFor="let country of datCountrys" [value]="country.name" >
+           <mat-option *ngFor="let country of datCountrys" [value]="country" >
              {{country.name}}
            </mat-option>
          </mat-select>
@@ -18,34 +18,31 @@
    <mat-form-field class="example-full-width">
       <mat-label>Ciudad de residencia</mat-label>
          <mat-select formControlName="city" [(ngModel)]="selectedCity">
-           <mat-option *ngFor="let city of dataCities | filterByCountry:selectedCountry?.id" [value]="city.name"> 
+           <mat-option *ngFor="let city of dataCities | filterByCountry:selectedCountry" [value]="city.name"> 
              {{city.name}}
            </mat-option>
          </mat-select>
-         <mat-error *ngIf="form.controls['country'].hasError('required')">
+         <mat-error *ngIf="form.controls['city'].hasError('required')">
             El campo es requerido  
          </mat-error>
    </mat-form-field>
    <mat-form-field class="example-full-width">
       <mat-label>Dirección de residencia</mat-label>
-      <input matInput type="text" formControlName="address" placeholder="insert address"   [value]="addressSet">
+      <input matInput type="text" formControlName="address" placeholder="Dar click para editar su direccion"  [disabled]="true">
    </mat-form-field>
-   <!-- <mat-form-field class="example-full-width">
-      <mat-label>Foto de perfil</mat-label>
-      <input matInput type="text" formControlName="photoProfile" placeholder="insert photo Profile">
-   </mat-form-field> -->
    <p class="list">Camara</p>
    <video  class="camera" #videoElement></video>
    <div id="photo" #photo></div>
-   <br>
+      <br>
    <p class="list">Foto</p>
    <canvas id="canvas"  class="camera"></canvas>
-   <br>
-   <br>
+      <br>
+      <br>
    <span  class="Bcamera" (click)="capturePhoto()">{{labelcamare}}</span>
-   <br>
-   <br>
+      <br>
+      <br>
    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit"  class="button"  [disabled]="!form.valid">Guardar</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="disableActive"  class="button"  [disabled]="!form.valid">Guardar</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="!disableActive"  class="button" >Editar</button>
    </div>
  </form>

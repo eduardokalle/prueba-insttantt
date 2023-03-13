@@ -34,9 +34,17 @@ export class ProfileComponent implements OnInit {
   photo : any;
 
 
-  addressSet : {};
+  addressSet : "MI DIRECCION ";
   countrySet : any;
   citySet : any;
+
+  showVideo= true;
+
+  isDisabled  = false;
+
+  conuntryUx : [];
+
+  disableActive;
 
   constructor(
     private userService: UserService,
@@ -48,7 +56,7 @@ export class ProfileComponent implements OnInit {
         country: ['', Validators.required,],
         city: ['', Validators.required],
         address: ['', [Validators.required, Validators.maxLength(100)]],
-       // photoProfile: ['', Validators.required],
+        //photoProfile: ['', Validators.required],
       });
     }
 
@@ -59,25 +67,40 @@ export class ProfileComponent implements OnInit {
     const muId = localStorage.getItem("myID");
     this.userService.emit('client:getuser', muId);
     this.dataGet();
+     
+
 
   }
-
   
   async dataGet(){
     await this.userService.on('server:getuser', ( data: any) => {  
       
         console.log(data);
-        data.address == this.addressSet
-        console.log(this.addressSet);
-      
+       const base_image = new Image();
+        base_image.src = data.photoProfile;
+        
+         const canvas = document.querySelector('canvas');
+         const context = canvas.getContext('2d');
+         base_image.onload = function(){
+        context.drawImage(base_image, 0, 0, canvas.width, canvas.height);}
+
+        const conuntryUx = this.datCountrys.filter(item => item.name === data.country)
+
+        this.form.patchValue({
+          country: null,
+          address: data.address,
+          city: data.city,
+        });
+        this.form.get("country").setValue(conuntryUx)  
     })
+
     }
 
   capturePhoto() {
    
     const video = document.querySelector('video');
     
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: this.showVideo })
       .then(stream => {
         video.srcObject = stream;
         video.play();
@@ -106,8 +129,13 @@ export class ProfileComponent implements OnInit {
     //console.log(this.photoUrl);
     this.photo = this.photoElement.src;
     console.log(this.photo);
+   
+    
   }
-
+  
+  activeButon(){
+    this.isDisabled = false
+  }
 
   onSubmit() {
     console.log(this.form.value);
@@ -127,6 +155,10 @@ export class ProfileComponent implements OnInit {
     this.userService.emitUpdate('client:updateusercomplete', muId ,newData);
     this.resData();
   };
+
+  onInputClick() {
+    this.isDisabled  = false;
+  }
 
   async resData () {
     
@@ -156,7 +188,7 @@ export class ProfileComponent implements OnInit {
 })
 export class FilterByCountryPipe implements PipeTransform {
   transform(items: any[], countryId: number): any[] {
-    
+    debugger
     if (!items || !countryId) {
       return items;
     }

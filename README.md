@@ -50,6 +50,8 @@ npm install  == para instalar node_modules y dependencias
 npm run dev o npm start ,  para correr el server segun prefiera o en dev o prod 
 corriendo  http://localhost:4500/
 
+nota( La base de datos se encuentra en mongo atlas un servicio cloud no sql, en las variables de entorno.env se encuentra las url y credenciales de la misma tener en cuenta esto de no eliminarlas.)
+
 ## agradecimientos 
 
 muchas gracias por la oportunidad de participar en la convocatoria lastima no tener más tiempo para mejorarlo

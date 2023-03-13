@@ -9,6 +9,8 @@ import { AuthGuard } from "./auth-guard.guard"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 
+import { CookieModule } from 'ngx-cookie';
+
 // modules material 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
@@ -66,7 +68,8 @@ import { FilterByCountryPipe  } from './components/completeregister/completeregi
     MatListModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CookieModule.withOptions() 
   ],
   providers: [AuthGuard, CookieService],
   bootstrap: [AppComponent]

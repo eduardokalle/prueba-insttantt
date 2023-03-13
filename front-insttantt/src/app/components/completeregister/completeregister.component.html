@@ -7,7 +7,7 @@
    <mat-form-field class="example-full-width">
       <mat-label>País de residencia</mat-label>
          <mat-select formControlName="country" [(value)]="selectedCountry">
-           <mat-option *ngFor="let country of datCountrys" [value]="country.name">
+           <mat-option *ngFor="let country of datCountrys" [value]="country">
              {{country.name}}
            </mat-option>
          </mat-select>
