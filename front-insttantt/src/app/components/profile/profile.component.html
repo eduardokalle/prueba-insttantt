@@ -7,7 +7,7 @@
    <mat-form-field class="example-full-width">
       <mat-label>País de residencia</mat-label>
          <mat-select formControlName="country" [(value)]="selectedCountry">
-           <mat-option *ngFor="let country of datCountrys" [value]="country" >
+           <mat-option *ngFor="let country of datCountrys" [value]="country.name" >
              {{country.name}}
            </mat-option>
          </mat-select>
@@ -18,7 +18,7 @@
    <mat-form-field class="example-full-width">
       <mat-label>Ciudad de residencia</mat-label>
          <mat-select formControlName="city" [(ngModel)]="selectedCity">
-           <mat-option *ngFor="let city of dataCities | filterByCountry:selectedCountry" [value]="city.name"> 
+           <mat-option *ngFor="let city of dataCities | filterByCountry:selectedCountry?.id" [value]="city.name"> 
              {{city.name}}
            </mat-option>
          </mat-select>
@@ -28,7 +28,10 @@
    </mat-form-field>
    <mat-form-field class="example-full-width">
       <mat-label>Dirección de residencia</mat-label>
-      <input matInput type="text" formControlName="address" placeholder="Dar click para editar su direccion"  [disabled]="true">
+      <input matInput type="text" formControlName="address" placeholder="Dar click para editar su direccion">
+      <mat-error *ngIf="form.controls['address'].hasError('required')">
+         El campo es requerido  
+      </mat-error>
    </mat-form-field>
    <p class="list">Camara</p>
    <video  class="camera" #videoElement></video>
@@ -42,7 +45,7 @@
       <br>
       <br>
    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" *ngIf="disableActive"  class="button"  [disabled]="!form.valid">Guardar</button>
-      <button mat-raised-button color="primary" type="submit" *ngIf="!disableActive"  class="button" >Editar</button>
+      <button mat-raised-button  type="submit" class="button"  [disabled]="!form.valid">Guardar</button>
    </div>
  </form>
+

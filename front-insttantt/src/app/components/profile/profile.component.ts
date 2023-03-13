@@ -46,6 +46,8 @@ export class ProfileComponent implements OnInit {
 
   disableActive;
 
+  photolast;
+
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -56,7 +58,7 @@ export class ProfileComponent implements OnInit {
         country: ['', Validators.required,],
         city: ['', Validators.required],
         address: ['', [Validators.required, Validators.maxLength(100)]],
-        //photoProfile: ['', Validators.required],
+        
       });
     }
 
@@ -76,22 +78,24 @@ export class ProfileComponent implements OnInit {
     await this.userService.on('server:getuser', ( data: any) => {  
       
         console.log(data);
-       const base_image = new Image();
+        const base_image = new Image();
         base_image.src = data.photoProfile;
-        
+        this.photolast = data.photoProfile;
          const canvas = document.querySelector('canvas');
          const context = canvas.getContext('2d');
+         console.log(base_image.src);
+         
          base_image.onload = function(){
         context.drawImage(base_image, 0, 0, canvas.width, canvas.height);}
 
         const conuntryUx = this.datCountrys.filter(item => item.name === data.country)
 
         this.form.patchValue({
-          country: null,
+          country: data.country,
           address: data.address,
           city: data.city,
         });
-        this.form.get("country").setValue(conuntryUx)  
+       // this.form.get("country").setValue(conuntryUx)  
     })
 
     }
@@ -143,16 +147,24 @@ export class ProfileComponent implements OnInit {
     const muId = localStorage.getItem("myID");
     console.log(this.photo);
 
+    if(this.photo == undefined){
+      this.photo == this.photolast
+    }else{
+      console.log(this.photo);
+       this.photo
+    }
+
     const newData = {
       country: data.country,
       city: data.city,
       address: data.address,
-      photoProfile: this.photo
+      photoProfile: this.photo,
+      _id: muId
     }
 
     console.log(newData);
     
-    this.userService.emitUpdate('client:updateusercomplete', muId ,newData);
+    this.userService.emit('client:updateusercomplete',newData);
     this.resData();
   };
 
@@ -164,6 +176,8 @@ export class ProfileComponent implements OnInit {
     
    await this.userService.on('server:updateusercomplete', (data: any) => {
 
+    console.log(data);
+    
      if (data == "resgitro completado") {
       Swal.fire({
         icon: 'success',

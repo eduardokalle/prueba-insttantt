@@ -10,8 +10,13 @@
   width: 60%;
 }
 
-button{
+.button{
   color: var(--fourt-color);
+}
+.button2{
+  color: var(--fourt-color);
+  margin: auto;
+margin-right: 50%;   
 }
 .page {
   margin: 0px;
